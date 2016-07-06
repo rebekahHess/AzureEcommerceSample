@@ -91,11 +91,24 @@ namespace WingtipToys
 
     protected void CheckoutBtn_Click(object sender, ImageClickEventArgs e)
     {
-      using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
-      {
-        Session["payment_amt"] = usersShoppingCart.GetTotal();
-      }
-      Response.Redirect("Checkout/CheckoutStart.aspx");
+      //using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
+      //{
+      //  Session["payment_amt"] = usersShoppingCart.GetTotal();
+      //}
+
+      ShoppingCartActions userShoppingCart = new ShoppingCartActions();
+      decimal total = userShoppingCart.GetTotal();
+      List<CartItem> cartItems = userShoppingCart.GetCartItems();
+      string user = userShoppingCart.GetCartId();
+      DateTime purchaseTime = DateTime.Now;
+
+
+      // Generate purchase event from above data
+
+
+      userShoppingCart.EmptyCart();
+      Response.Redirect("Default.aspx");
+      //Response.Redirect("Checkout/CheckoutComplete.aspx");
     }
   }
 }
