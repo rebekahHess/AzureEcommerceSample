@@ -1,3 +1,6 @@
 [submodule "EventSimulator"]
 	path = EventSimulator
 	url = https://github.com/jonmseaman/EventSimulator.git
+[submodule "EventHub.js"]
+	path = EventHub.js
+	url = https://github.com/jonmseaman/EventHub.js
