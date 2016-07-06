@@ -303,11 +303,13 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="ProductDetails.aspx" />
     <Content Include="ProductList.aspx" />
+    <Content Include="TestPages\TestPage.aspx" />
     <Content Include="SASServer\SAS.aspx">
       <BrowseToURL>~/SASServer/SAS</BrowseToURL>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\EventHub.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.js" />
@@ -562,6 +564,13 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductContext.cs" />
     <Compile Include="Models\ProductDatabaseInitializer.cs" />
+    <Compile Include="TestPages\TestPage.aspx.cs">
+      <DependentUpon>TestPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestPages\TestPage.aspx.designer.cs">
+      <DependentUpon>TestPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SASServer\SAS.aspx.cs">
       <DependentUpon>SAS.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
