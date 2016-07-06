@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="sendHTTP.js" type="text/javascript"></script>
+</head>
+<body>
+<!--Example Button -->
+<!--<button onclick=";"><h4>Text</h4></button>-->
+
+<button onclick="updateSAS();">Update SAS</button>
+<p id="status"></p>
+<p id="my_sas"></p>
+
+<button onclick="sendToEventHubExample();">Send data</button>
+<input id="messageToSend" type="text" name="txtJob" value="Payload">
+<p id="event_hub"></p>
+
+<button onclick="var e = clickEvent('/products/1');sendToEventHub(e);updateId('click_event', JSON.stringify(e));">Click Event</button>
+<p id="click_event"></p>
+
+<button onclick="var e = purchaseEvent();sendToEventHub(e);updateId('purchase_event', JSON.stringify(e));">Purchase Event</button>
+<p id="purchase_event"></p>
+
+</body>
+</html>
