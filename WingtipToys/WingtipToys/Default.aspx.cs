@@ -35,16 +35,5 @@ namespace WingtipToys
       }
     }
 
-        [WebMethod]
-        public static void TestMethod()
-    {
-            string connectionString = "Server=tcp:internserver2016.database.windows.net,1433;Data Source=internserver2016.database.windows.net;Initial Catalog=ClickDataRaw;Persist Security Info=False;User ID={your_username};Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-            SqlConnection objConn = new SqlConnection(connectionString);
-            objConn.Open();
-            var sw = new StreamWriter(Console.OpenStandardOutput());
-            sw.AutoFlush = true;
-            Console.SetOut(sw);
-            Console.WriteLine("test");
-    }
   }
 }

@@ -32,7 +32,7 @@
                                 <td>
                                   <a href="<%#: GetRouteUrl("ProductByNameRoute", new {productName = Item.ProductName}) %>">
                                     <img src='/Catalog/Images/Thumbs/<%#:Item.ImagePath%>'
-                                      width="100" height="75" border="1" />
+                                      width="100" height="75" />
                                   </a>
                                 </td>
                             </tr>
@@ -81,7 +81,7 @@
     </section>
 
 
-    <table id="recTable" style="width:100%;">
+    <table id="recTable" style="width:75%;">
         <tbody>
             <tr>
                 <td><br /></td>

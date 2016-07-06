@@ -28,7 +28,7 @@
                     </td>
                 </tr>
             </table>
-            <table id="recTable" style="width:100%;">
+            <table id="recTable" style="width:75%;">
                 <tbody>
                     <tr>
                         <td><br /></td>
