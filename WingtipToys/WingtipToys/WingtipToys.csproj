@@ -303,6 +303,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="ProductDetails.aspx" />
     <Content Include="ProductList.aspx" />
+    <Content Include="Scripts\EventHubSetup.js" />
     <Content Include="TestPages\TestPage.aspx" />
     <Content Include="SASServer\SAS.aspx">
       <BrowseToURL>~/SASServer/SAS</BrowseToURL>
@@ -653,8 +654,7 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PostBuildEvent>:: Copy Event hub library
-copy $(SolutionDir)\..\EventHub.js\EventHub.js $(ProjectDir)\Scripts /Y</PostBuildEvent>
+    <PostBuildEvent>copy $(SolutionDir)\..\EventHub.js\EventHub.js $(ProjectDir)\Scripts /Y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

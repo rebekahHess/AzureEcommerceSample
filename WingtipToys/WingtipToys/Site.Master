@@ -14,6 +14,8 @@
     </asp:PlaceHolder>
     <%: System.Web.Optimization.Styles.Render("~/Content/css") %>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    
+    <script src="/Scripts/EventHub.js" type="text/javascript" defer="defer"></script>
 
 </head>
 <body>
