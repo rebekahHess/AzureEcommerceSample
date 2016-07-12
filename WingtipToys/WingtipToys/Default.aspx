@@ -11,13 +11,7 @@
             any of our toys today. Each toy listing has detailed 
             information to help you choose the right toy.</p>
 
-    <table id="recTable" style="width:75%;">
-        <tbody>
-            <tr>
-                <td><b>Top Sellers</b></td>
-            </tr>
-        </tbody>
-    </table>
+    <table id="recTable" style="width:75%;"></table>
 
     <!--Script references. -->
     <!--Reference the jQuery library. -->
@@ -56,7 +50,7 @@
                         $('#recTable').empty();
                         $('#recTable').append('<tr><td><b>Top Sellers</b></td></tr>');
                         var rows = [];
-                        for (var i = 0; i < Math.min(data.length, 3); i++) {
+                        for (var i = 0; i < 3; i++) {
                             rows.push('<td><a href="/Product/' + data[i].ProductName + '"><img src=\'/Catalog/Images/Thumbs/' + data[i].ImageURL +
                                 '\' width="100" height="75" border="1" /></a><br /><a href="/Product/' + data[i].ProductName + '">' + data[i].ProductName + '</a><br /><span><b>Price: </b>$' +
                                 data[i].Price + '</span><br /><a href="/AddToCart.aspx?productID=' + data[i].ProductID + '"><span class="ProductListItem"><b>Add To Cart<b></span></a></td>');
