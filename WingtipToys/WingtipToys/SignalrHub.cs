@@ -10,9 +10,14 @@ namespace WingtipToys
 {
     public class SignalrHub : Hub
     {
-        public void Send(int prodID, string prod, string im, double? price, int? catID)
+        //public void Send(int prodID, string prod, string im, double? price, int? catID)
+        //{
+        //    Clients.All.broadcastMessage(prodID, prod, im, price, catID);
+        //}
+        public static void Show()
         {
-            Clients.All.broadcastMessage(prodID, prod, im, price, catID);
+            IHubContext context = GlobalHost.ConnectionManager.GetHubContext<SignalrHub>();
+            context.Clients.All.displayStatus();
         }
     }
 }

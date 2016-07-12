@@ -8,6 +8,7 @@ using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using WingtipToys.Models;
+using System.Web.Http;
 
 namespace WingtipToys
 {
@@ -16,7 +17,15 @@ namespace WingtipToys
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301883
         public void ConfigureAuth(IAppBuilder app)
         {
-            //app.MapSignalR();
+            HttpConfiguration config = new HttpConfiguration();
+
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}"
+            );
+
+            //app.UseWebApi(config);
+            app.MapSignalR();
             // Configure the db context, user manager and signin manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);

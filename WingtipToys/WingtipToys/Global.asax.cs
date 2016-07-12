@@ -10,12 +10,19 @@ using System.Data.Entity;
 using WingtipToys.Models;
 using WingtipToys.Logic;
 
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Web.Http;
+
 namespace WingtipToys
 {
     public class Global : HttpApplication
     {
         void Application_Start(object sender, EventArgs e)
         {
+            //SqlDependency.Start(ConfigurationManager.ConnectionStrings["RecTest"].ConnectionString);
+
+
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
@@ -33,11 +40,25 @@ namespace WingtipToys
 
             // Add Routes.
             RegisterCustomRoutes(RouteTable.Routes);
+            
         }
+
+        //protected void Application_End()
+        //{
+        //    SqlDependency.Stop(ConfigurationManager.ConnectionStrings["RecTest"].ConnectionString);
+        //}
+
+
+
 
         void RegisterCustomRoutes(RouteCollection routes)
         {
-          routes.MapPageRoute(
+            routes.MapHttpRoute(
+            name: "DefaultApi",
+            routeTemplate: "api/{controller}"
+            );
+
+            routes.MapPageRoute(
               "ProductsByCategoryRoute",
               "Category/{categoryName}",
               "~/ProductList.aspx"
