@@ -24,6 +24,13 @@ namespace WingtipToys
                 routeTemplate: "api/{controller}"
             );
 
+            HttpConfiguration config2 = new HttpConfiguration();
+
+            config2.Routes.MapHttpRoute(
+                name: "DefaultApi2",
+                routeTemplate: "api/{controller}/{id}"
+            );
+
             //app.UseWebApi(config);
             app.MapSignalR();
             // Configure the db context, user manager and signin manager to use a single instance per request

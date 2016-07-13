@@ -16,13 +16,15 @@ namespace WingtipToys
         public IEnumerable<ProductInfo> Get()
         {
             ProductInfoRepository objRepo = new ProductInfoRepository();
-            return objRepo.GetData();
+            return objRepo.GetHome();
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        [HttpGet]
+        public IEnumerable<ProductInfo> Get(int id)
         {
-            return "value";
+            ProductInfoRepository objRepo = new ProductInfoRepository();
+            return objRepo.GetProducts();
         }
 
         // POST api/<controller>

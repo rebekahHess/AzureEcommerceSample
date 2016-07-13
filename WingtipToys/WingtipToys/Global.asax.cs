@@ -54,20 +54,25 @@ namespace WingtipToys
         void RegisterCustomRoutes(RouteCollection routes)
         {
             routes.MapHttpRoute(
-            name: "DefaultApi",
-            routeTemplate: "api/{controller}"
+              name: "DefaultApi",
+              routeTemplate: "api/{controller}"
             );
 
+            routes.MapHttpRoute(
+              name: "DefaultApi2",
+              routeTemplate: "api/{controller}/{id}"
+            );
             routes.MapPageRoute(
               "ProductsByCategoryRoute",
               "Category/{categoryName}",
               "~/ProductList.aspx"
-          );
-          routes.MapPageRoute(
+            );
+            routes.MapPageRoute(
               "ProductByNameRoute",
               "Product/{productName}",
               "~/ProductDetails.aspx"
-          );
+            );
+
         }
 
         void Application_Error(object sender, EventArgs e)
