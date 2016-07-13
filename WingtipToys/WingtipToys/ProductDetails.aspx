@@ -28,16 +28,11 @@
                     </td>
                 </tr>
             </table>
-            <table id="recTable" style="width:75%;">
-                <tbody>
-                    <tr>
-                        <td><br /></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><b>Recommended for You</b></td>
-                    </tr>
-                </tbody>
-            </table>
+            <hr />
+            <div>
+                <h3>Recommended for You</h3>
+            </div>
+            <table id="recTable" style="width:75%;"></table>
             <script type="text/javascript">
                 getData();
                 function getData() {
@@ -48,8 +43,6 @@
                         datatype: 'json',
                         success: function (data) {
                             if (data.length > 0) {
-                                $('#recTable').empty();
-                                $('#recTable').append('<tr><td colspan="2"><b>Recommended for you</b></td></tr>');
                                 var rows = [];
                                 for (var i = 0; i < 3; i++) {
                                     rows.push('<td><a href="/Product/' + data[i].ProductName + '"><img src=\'/Catalog/Images/Thumbs/' + data[i].ImageURL +
