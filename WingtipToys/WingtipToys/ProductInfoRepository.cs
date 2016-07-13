@@ -22,10 +22,7 @@ namespace WingtipToys
                     // Make sure the command object does not already have
                     // a notification object associated with it.
                     command.Notification = null;
-
-                    //SqlDependency dependency = new SqlDependency(command);
-                    //dependency.OnChange += new OnChangeEventHandler(dependency_OnChange);
-
+                    
                     if (connection.State == ConnectionState.Closed)
                         connection.Open();
 

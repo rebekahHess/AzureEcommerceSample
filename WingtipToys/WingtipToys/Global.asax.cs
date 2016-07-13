@@ -20,9 +20,6 @@ namespace WingtipToys
     {
         void Application_Start(object sender, EventArgs e)
         {
-            //SqlDependency.Start(ConfigurationManager.ConnectionStrings["RecTest"].ConnectionString);
-
-
             // Code that runs on application startup
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
@@ -39,17 +36,8 @@ namespace WingtipToys
             roleActions.AddUserAndRole();
 
             // Add Routes.
-            RegisterCustomRoutes(RouteTable.Routes);
-            
+            RegisterCustomRoutes(RouteTable.Routes);        
         }
-
-        //protected void Application_End()
-        //{
-        //    SqlDependency.Stop(ConfigurationManager.ConnectionStrings["RecTest"].ConnectionString);
-        //}
-
-
-
 
         void RegisterCustomRoutes(RouteCollection routes)
         {

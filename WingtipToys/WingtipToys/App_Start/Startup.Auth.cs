@@ -31,7 +31,6 @@ namespace WingtipToys
                 routeTemplate: "api/{controller}/{id}"
             );
 
-            //app.UseWebApi(config);
             app.MapSignalR();
             // Configure the db context, user manager and signin manager to use a single instance per request
             app.CreatePerOwinContext(ApplicationDbContext.Create);
