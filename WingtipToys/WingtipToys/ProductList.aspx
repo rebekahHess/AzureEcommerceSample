@@ -1,12 +1,11 @@
-﻿	<%@ Page Title="Products" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
-         CodeBehind="ProductList.aspx.cs" Inherits="WingtipToys.ProductList" %>
+﻿<%@ Page Title="Products" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" 
+    CodeBehind="ProductList.aspx.cs" Inherits="WingtipToys.ProductList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <section>
         <div>
             <hgroup>
                 <h2><%: Page.Title %></h2>
             </hgroup>
-
             <asp:ListView ID="productList" runat="server" 
                 DataKeyNames="ProductID" GroupItemCount="4"
                 ItemType="WingtipToys.Models.Product" SelectMethod="GetProducts">
@@ -79,32 +78,31 @@
             </asp:ListView>
         </div>
     </section>
-
-
-    <table id="recTable" style="width:75%;">
-        <tbody>
-            <tr>
-                <td><br /></td>
-            </tr>
-            <tr>
-                <td colspan="2"><b>Recommended for You</b></td>
-            </tr>
-        </tbody>
-    </table>
-            <script type="text/javascript">
-                $(function () {
-                    // Adds a product recommendation to the page.
-                    function GetRec(prodID, prod, im, price, catID) {
-                        $('#recTable').append('<td><a href="/Product/' + prod + '"><img src=\'/Catalog/Images/Thumbs/' + im +
-                            '\' width="100" height="75" border="1" /></a><br /><a href="/Product/' + prod + '">' + prod + '</a><br /><span><b>Price: </b>$' +
-                            price + '</span><br /><a href="/AddToCart.aspx?productID=' + prodID + '"><span class="ProductListItem"><b>Add To Cart<b></span></a></td>');                      
+    <hr />
+    <div>
+        <h3>Recommended for You</h3>
+    </div>
+    <table id="recTable" style="width:75%;"></table>
+    <script type="text/javascript">
+        getData();
+        function getData() {
+            $.ajax({
+                url: '/api/Product',
+                type: 'GET',
+                datatype: 'json',
+                success: function (data) {
+                    if (data.length > 0) {
+                        var rows = [];
+                        for (var i = 0; i < 3; i++) {
+                            rows.push('<td><a href="/Product/' + data[i].ProductName + '"><img src=\'/Catalog/Images/Thumbs/' + data[i].ImageURL +
+                                '\' width="100" height="75" border="1" /></a><br /><a href="/Product/' + data[i].ProductName + '">' + data[i].ProductName +
+                                '</a><br /><span><b>Price: </b>$' + data[i].Price.toFixed(2) + '</span><br /><a href="/AddToCart.aspx?productID=' +
+                                data[i].ProductID + '"><span class="ProductListItem"><b>Add To Cart<b></span></a></td>');
+                        }
+                        $('#recTable').append(rows.join(''));
                     }
-                    // TODO: Query database.
-                    GetRec(1, "Convertible Car", "carconvert.png", 22.50, 1);
-                    GetRec(2, "Old-time Car", "carearly.png", 15.95, 1);
-                    GetRec(3, "Fast Car", "carfast.png", 32.99, 1);
-
-                });
-            </script>
-
+                }
+            });
+        }
+    </script>
 </asp:Content>

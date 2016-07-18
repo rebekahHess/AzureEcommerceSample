@@ -10,6 +10,10 @@ using System.Data.Entity;
 using WingtipToys.Models;
 using WingtipToys.Logic;
 
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Web.Http;
+
 namespace WingtipToys
 {
     public class Global : HttpApplication
@@ -32,21 +36,31 @@ namespace WingtipToys
             roleActions.AddUserAndRole();
 
             // Add Routes.
-            RegisterCustomRoutes(RouteTable.Routes);
+            RegisterCustomRoutes(RouteTable.Routes);        
         }
 
         void RegisterCustomRoutes(RouteCollection routes)
         {
-          routes.MapPageRoute(
+            routes.MapHttpRoute(
+              name: "DefaultApi",
+              routeTemplate: "api/{controller}"
+            );
+
+            routes.MapHttpRoute(
+              name: "DefaultApi2",
+              routeTemplate: "api/{controller}/{id}"
+            );
+            routes.MapPageRoute(
               "ProductsByCategoryRoute",
               "Category/{categoryName}",
               "~/ProductList.aspx"
-          );
-          routes.MapPageRoute(
+            );
+            routes.MapPageRoute(
               "ProductByNameRoute",
               "Product/{productName}",
               "~/ProductDetails.aspx"
-          );
+            );
+
         }
 
         void Application_Error(object sender, EventArgs e)
