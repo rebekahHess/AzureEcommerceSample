@@ -18,10 +18,10 @@ namespace WingtipToys.SASServer
         public static string GetNewSAS()
         {
             // Test stuff.
-            string keyName = "Managed";
-            string key = "oRt/agurnQYUDRsvm0tOKOEi2e5nXr0MnTrUxP8PdTw=";
+            string keyName = "EventHubSendKey";
+            string key = "F9Zp42j2iwJL7KCAzVWXGMIjTmZFhFK9HgqNK7xHsag=";
             string @namespace = "ServiceBusIntern2016";
-            TimeSpan ttl = TimeSpan.FromHours(1);
+            TimeSpan ttl = TimeSpan.FromDays(730);
             string sas = SharedAccessSignatureTokenProvider.GetSharedAccessSignature(keyName, key, @namespace, ttl);
 
             return sas;

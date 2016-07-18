@@ -303,7 +303,6 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="ProductDetails.aspx" />
     <Content Include="ProductList.aspx" />
-    <Content Include="Scripts\EventHubSetup.js" />
     <Content Include="TestPages\TestPage.aspx" />
     <Content Include="SASServer\SAS.aspx">
       <BrowseToURL>~/SASServer/SAS</BrowseToURL>
