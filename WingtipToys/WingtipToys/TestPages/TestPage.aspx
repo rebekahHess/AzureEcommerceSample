@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <script src="/Scripts/EventHub.js" type="text/javascript" defer="defer"></script>
+    <script src="/Scripts/EventHub.js/EventHub.js" type="text/javascript" defer="defer"></script>
 </head>
 <body>
     <!--Event hub data-->
