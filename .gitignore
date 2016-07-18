@@ -1,7 +1,7 @@
 ## Our website
 
 # Ignore EventHub.js since it is copied from a sub module.
-EventHub.js
+WingtipToys\WingtipToys\Scripts\EventHub.js\EventHub.js
 
 
 
