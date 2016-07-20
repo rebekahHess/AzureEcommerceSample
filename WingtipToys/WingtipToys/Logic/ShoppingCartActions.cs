@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using WingtipToys.Models;
+using System.Web.SessionState;
 
 namespace WingtipToys.Logic
 {
@@ -60,16 +61,16 @@ namespace WingtipToys.Logic
     {
       if (HttpContext.Current.Session[CartSessionKey] == null)
       {
-        if (!string.IsNullOrWhiteSpace(HttpContext.Current.User.Identity.Name))
-        {
-          HttpContext.Current.Session[CartSessionKey] = HttpContext.Current.User.Identity.Name;
-        }
-        else
-        {
-          // Generate a new random GUID using System.Guid class.     
-          Guid tempCartId = Guid.NewGuid();
-          HttpContext.Current.Session[CartSessionKey] = tempCartId.ToString();
-        }
+          if (!string.IsNullOrWhiteSpace(HttpContext.Current.User.Identity.Name))
+          {
+              HttpContext.Current.Session[CartSessionKey] = HttpContext.Current.User.Identity.Name;
+          }
+          else
+          {
+              // Generate a new random GUID using System.Guid class.     
+              Guid tempCartId = Guid.NewGuid();
+              HttpContext.Current.Session[CartSessionKey] = tempCartId.ToString();
+          }
       }
       return HttpContext.Current.Session[CartSessionKey].ToString();
     }
@@ -96,7 +97,7 @@ namespace WingtipToys.Logic
       return total ?? decimal.Zero;
     }
 
-    public ShoppingCartActions GetCart(HttpContext context)
+    public static ShoppingCartActions GetCart(HttpContext context)
     {
       using (var cart = new ShoppingCartActions())
       {

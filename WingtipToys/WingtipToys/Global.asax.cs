@@ -50,6 +50,7 @@ namespace WingtipToys
               name: "DefaultApi2",
               routeTemplate: "api/{controller}/{id}"
             );
+
             routes.MapPageRoute(
               "ProductsByCategoryRoute",
               "Category/{categoryName}",

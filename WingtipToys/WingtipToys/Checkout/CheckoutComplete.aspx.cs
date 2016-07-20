@@ -17,8 +17,8 @@ namespace WingtipToys.Checkout
         // Verify user has completed the checkout process.
         if ((string)Session["userCheckoutCompleted"] != "true")
         {
-          Session["userCheckoutCompleted"] = string.Empty;
-          Response.Redirect("CheckoutError.aspx?" + "Desc=Unvalidated%20Checkout.");
+            Session["userCheckoutCompleted"] = string.Empty;
+            Response.Redirect("CheckoutError.aspx?" + "Desc=Unvalidated%20Checkout.");
         }
 
         NVPAPICaller payPalCaller = new NVPAPICaller();

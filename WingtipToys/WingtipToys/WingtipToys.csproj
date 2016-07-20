@@ -546,6 +546,7 @@
     <Compile Include="Checkout\CheckoutStart.aspx.designer.cs">
       <DependentUpon>CheckoutStart.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PurchaseInfo.cs" />
     <Compile Include="ProductInfoRepository.cs" />
     <Compile Include="ProductInfo.cs" />
     <Compile Include="Contact.aspx.cs">

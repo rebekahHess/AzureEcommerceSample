@@ -9,6 +9,7 @@ using WingtipToys.Logic;
 using System.Collections.Specialized;
 using System.Collections;
 using System.Web.ModelBinding;
+using System.IO;
 
 namespace WingtipToys
 {
@@ -18,6 +19,30 @@ namespace WingtipToys
     {
       using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
       {
+        List<PurchaseInfo> purchaseItems = new List<PurchaseInfo>();
+        List<CartItem> cartItems = usersShoppingCart.GetCartItems();
+        string user = usersShoppingCart.GetCartId();
+        DateTime purchaseTime = DateTime.Now;
+
+        foreach (CartItem item in cartItems)
+        {
+            PurchaseInfo purchaseInfo = new PurchaseInfo()
+            {
+                ProductId = item.ProductId,
+                Price = (double)item.Product.UnitPrice,
+                Quantity = item.Quantity,
+                Time = purchaseTime,
+                Email = user,
+                // TODO: Update SessionId
+                SessionId = "1"
+
+            };
+            purchaseItems.Add(purchaseInfo);
+
+        }
+
+        ProductInfoRepository.purchaseData = (IEnumerable<PurchaseInfo>)purchaseItems;
+
         decimal cartTotal = 0;
         cartTotal = usersShoppingCart.GetTotal();
         if (cartTotal > 0)
@@ -91,24 +116,12 @@ namespace WingtipToys
 
     protected void CheckoutBtn_Click(object sender, ImageClickEventArgs e)
     {
-      //using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
-      //{
-      //  Session["payment_amt"] = usersShoppingCart.GetTotal();
-      //}
-
-      ShoppingCartActions userShoppingCart = new ShoppingCartActions();
-      decimal total = userShoppingCart.GetTotal();
-      List<CartItem> cartItems = userShoppingCart.GetCartItems();
-      string user = userShoppingCart.GetCartId();
-      DateTime purchaseTime = DateTime.Now;
-
-
-      // Generate purchase event from above data
-
-
-      userShoppingCart.EmptyCart();
+      using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
+      {
+          usersShoppingCart.EmptyCart();
+          
+      }
       Response.Redirect("Default.aspx");
-      //Response.Redirect("Checkout/CheckoutComplete.aspx");
     }
   }
 }
