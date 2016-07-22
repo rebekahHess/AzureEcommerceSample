@@ -11,6 +11,14 @@ using System.Collections;
 using System.Web.ModelBinding;
 using System.IO;
 
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Data;
+
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+
 namespace WingtipToys
 {
   public partial class ShoppingCart : System.Web.UI.Page
@@ -118,7 +126,32 @@ namespace WingtipToys
     {
       using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
       {
-          usersShoppingCart.EmptyCart();
+            List<CartItem> cartItems = usersShoppingCart.GetCartItems();
+            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RecTest"].ConnectionString))
+            {
+                connection.Open();
+                foreach (CartItem item in cartItems)
+                {
+                    using (SqlCommand command = new SqlCommand(@"DECLARE @IncrementValue int SET @IncrementValue = " + item.Quantity + " UPDATE [dbo].[Purchases] SET [Count] = [Count] + @IncrementValue WHERE [ProductId]=" + item.ProductId + ";", connection))
+                    {
+                        // Make sure the command object does not already have
+                        // a notification object associated with it.
+                        command.Notification = null;
+
+                        if (connection.State == ConnectionState.Closed)
+                            connection.Open();
+
+                        using (var reader = command.ExecuteReader())
+                        {
+
+
+                        }
+                    }
+                }
+
+            }
+            
+            usersShoppingCart.EmptyCart();
           
       }
       Response.Redirect("Default.aspx");

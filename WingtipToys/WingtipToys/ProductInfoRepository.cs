@@ -98,6 +98,23 @@ namespace WingtipToys
         {
             return purchaseData;
         }
+
+        public IEnumerable<String> GetUser()
+        {
+            List<String> user = new List<String>();
+            if (!string.IsNullOrWhiteSpace(HttpContext.Current.User.Identity.Name))
+            {
+                user.Add(HttpContext.Current.User.Identity.Name);
+                return (IEnumerable<String>)user;
+            }
+            else
+            {
+                // Generate a new random GUID using System.Guid class.     
+                Guid tempUser = Guid.NewGuid();
+                user.Add(tempUser.ToString());
+                return (IEnumerable<String>)user;
+            }
+        }
         private void dependency_OnChange(object sender, SqlNotificationEventArgs e)
         {
             SignalrHub.Show();

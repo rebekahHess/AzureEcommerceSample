@@ -45,6 +45,14 @@ namespace WingtipToys
             return objRepo.GetPurchase();
         }
 
+        // GET api/<controller>/5
+        [HttpGet]
+        public IEnumerable<String> Get(int i1, int i2)
+        {
+            ProductInfoRepository objRepo = new ProductInfoRepository();
+            return objRepo.GetUser();
+        }
+
         // POST api/<controller>
         public void Post([FromBody]string value)
         {
