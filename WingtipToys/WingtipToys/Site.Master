@@ -88,17 +88,48 @@
         </div>
         <div id="CategoryMenu" style="text-align: center">       
             <asp:ListView ID="categoryList"  
+                GroupItemCount="4"
                 ItemType="WingtipToys.Models.Category" 
                 runat="server"
                 SelectMethod="GetCategories" >
+                <GroupTemplate>
+                    <tr id="itemPlaceholderContainer" runat="server">
+                        <td id="itemPlaceholder" runat="server"></td>
+                    </tr>
+                </GroupTemplate>
                 <ItemTemplate>
-                    <b style="font-size: large; font-style: normal">
-                    <a href="<%#: GetRouteUrl("ProductsByCategoryRoute", new {categoryName = Item.CategoryName}) %>">
-                        <%#: Item.CategoryName %>
-                    </a>
-                    </b>
+                    <td runat="server">
+                        <table>
+                            <tr>
+                                <td>
+                                    <b style="font-size: medium; font-style: normal">
+                                    <a href="<%#: GetRouteUrl("ProductsByCategoryRoute", new {categoryName = Item.CategoryName}) %>">
+                                        <%#: Item.CategoryName %>
+                                    </a>
+                                    </b>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
                 </ItemTemplate>
-                <ItemSeparatorTemplate>  |  </ItemSeparatorTemplate>
+                <%--<ItemSeparatorTemplate>  |  </ItemSeparatorTemplate>--%>
+                <LayoutTemplate>
+                    <table style="width:100%;">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <table id="groupPlaceholderContainer" runat="server" align="center" style="width:50%">
+                                        <tr id="groupPlaceholder"></tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr></tr>
+                        </tbody>
+                    </table>
+                </LayoutTemplate>
             </asp:ListView>
         </div>
         <div class="container body-content">

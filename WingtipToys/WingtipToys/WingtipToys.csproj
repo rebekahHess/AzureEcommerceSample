@@ -320,6 +320,7 @@
     <Content Include="Checkout\Web.config" />
     <Content Include="Admin\Web.config" />
     <Content Include="ClassDiagram1.cd" />
+    <None Include="Properties\PublishProfiles\EcommerceSite - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\WingtipToysCloud - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\WingtipToysCloud - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

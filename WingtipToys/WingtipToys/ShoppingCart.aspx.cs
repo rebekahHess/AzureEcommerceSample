@@ -48,6 +48,7 @@ namespace WingtipToys
 
                 }
 
+                ProductInfoRepository.cartItems = cartItems;
                 ProductInfoRepository.purchaseData = (IEnumerable<PurchaseInfo>)purchaseItems;
 
                 decimal cartTotal = 0;

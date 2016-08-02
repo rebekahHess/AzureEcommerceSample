@@ -26,41 +26,24 @@ namespace WingtipToys.Logic
                 _db.Products.Add(myProduct);
                 _db.SaveChanges();
             }
+            
+            //using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RecTest"].ConnectionString))
+            //{
+            //    connection.Open();
+            //    // Make sure the command object does not already have
+            //    // a notification object associated with it.
 
-            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RecTest"].ConnectionString))
-            {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand(@"SELECT MAX([ProdId]) FROM [dbo].[Purchases];", connection))
-                {
-                    // Make sure the command object does not already have
-                    // a notification object associated with it.
-                    int prodId = 0;
-                    command.Notification = null;
+            //    using (SqlCommand command2 = new SqlCommand(@"INSERT INTO [dbo].[Purchases] (ProductID, ProductName, ImageURL, Price, CategoryID, Count) VALUES (" + myProduct.ProductID + ", '" + ProductName + "', '" + ProductImagePath + "', " + Convert.ToDouble(ProductPrice) + ", " + Convert.ToInt32(ProductCategory) + ", 0);", connection))
+            //    {
+            //        // Make sure the command object does not already have
+            //        // a notification object associated with it.
+            //        command2.Notification = null;
 
-                    if (connection.State == ConnectionState.Closed)
-                        connection.Open();
+            //        var reader = command2.ExecuteReader();
+            //    }
 
-                    using (var reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            reader.Read();
-                            prodId = reader.GetInt32(0);
-                        }
+            //}
 
-                    }
-
-                    using (SqlCommand command2 = new SqlCommand(@"INSERT INTO [dbo].[Purchases] VALUES (" + (prodId + 1) + ",myProduct.ProductName,myProduct.ImagePath,myProduct.UnitPrice,myProduct.CategoryID,0);", connection))
-                    {
-                        // Make sure the command object does not already have
-                        // a notification object associated with it.
-                        command2.Notification = null;
-
-                        var reader = command2.ExecuteReader();
-                    }
-                }
-
-            }
             // Success.
             return true;
         }
