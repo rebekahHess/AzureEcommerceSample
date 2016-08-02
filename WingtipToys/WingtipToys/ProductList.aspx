@@ -90,7 +90,7 @@
     <div>
         <h3>Recommended for You</h3>
     </div>
-    <table id="recTable" style="width:75%;"></table>
+    <table id="recTable" style="width:100%;"></table>
     <script type="text/javascript">
         getData();
         function getData() {
@@ -101,7 +101,7 @@
                 success: function (data) {
                     if (data.length > 0) {
                         var rows = [];
-                        for (var i = 0; i < 3; i++) {
+                        for (var i = 0; i < data.length; i++) {
                             rows.push('<td><a href="/Product/' + data[i].ProductName + '"><img src=\'/Catalog/Images/Thumbs/' + data[i].ImageURL +
                                 '\' width="100" height="75" border="1" /></a><br /><a href="/Product/' + data[i].ProductName + '">' + data[i].ProductName +
                                 '</a><br /><span><b>Price: </b>$' + data[i].Price.toFixed(2) + '</span><br /><a href="/AddToCart.aspx?productID=' +

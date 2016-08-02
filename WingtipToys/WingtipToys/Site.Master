@@ -112,7 +112,6 @@
                         </table>
                     </td>
                 </ItemTemplate>
-                <%--<ItemSeparatorTemplate>  |  </ItemSeparatorTemplate>--%>
                 <LayoutTemplate>
                     <table style="width:100%;">
                         <tbody>

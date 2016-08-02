@@ -14,10 +14,8 @@
     <div>
         <h3>Top Sellers</h3>
     </div>
-    <table id="recTable" style="width:75%;"></table>
+    <table id="recTable" style="width:100%;"></table>
     <!--Script references. -->
-    <!--Reference the jQuery library. -->
-    <script src="Scripts/jquery-1.10.2.min.js" ></script>
     <script type="text/javascript">
         $(function () {
             $.ajax({
@@ -27,7 +25,7 @@
                 success: function (data) {
                     if (data.length > 0) {
                         var rows = [];
-                        for (var i = 0; i < 3; i++) {
+                        for (var i = 0; i < data.length; i++) {
                             rows.push('<td><a href="/Product/' + data[i].ProductName + '"><img src=\'/Catalog/Images/Thumbs/' + data[i].ImageURL +
                                 '\' width="100" height="75" border="1" /></a><br /><a href="/Product/' + data[i].ProductName + '">' + data[i].ProductName +
                                 '</a><br /><span><b>Price: </b>$' + data[i].Price.toFixed(2) + '</span><br /><a href="/AddToCart.aspx?productID=' +
