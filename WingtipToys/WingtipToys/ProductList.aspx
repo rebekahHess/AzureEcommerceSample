@@ -66,7 +66,7 @@
                                     <table id="groupPlaceholderContainer" runat="server" style="width:100%">
                                         <tr id="groupPlaceholder"></tr>
                                     </table>
-                                    <asp:DataPager ID="DataPager1" runat="server" PagedControlID="productList" PageSize="10">
+                                    <asp:DataPager ID="DataPager1" runat="server" PagedControlID="productList" PageSize="40">
                                         <Fields>
                                             <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="false" ShowPreviousPageButton="true"
                                                 ShowNextPageButton="false" />

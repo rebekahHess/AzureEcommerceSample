@@ -138,6 +138,7 @@
             <hr />
             <footer>
                 <p>&copy; <%: DateTime.Now.Year %> - Wingtip Toys</p>
+                <p><a href="https://developer.bestbuy.com"><img src="https://developer.bestbuy.com/images/bestbuy-logo.png" alt="Best Buy Developer"></a></p>
             </footer>
         </div>
     </form>
