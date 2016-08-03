@@ -107,8 +107,6 @@ namespace WingtipToys
                     // determine if item is not in purchases table
                     using (SqlCommand command = new SqlCommand(@"SELECT * FROM [dbo].[Purchases] WHERE [ProductID] = '" + item.Product.ProductID + "';", connection))
                     {
-                        // Make sure the command object does not already have
-                        // a notification object associated with it.
                         command.Notification = null;
 
                         if (connection.State == ConnectionState.Closed)
@@ -133,8 +131,7 @@ namespace WingtipToys
 
                             if (connection.State == ConnectionState.Closed)
                                 connection.Open();
-                            // Make sure the command object does not already have
-                            // a notification object associated with it.
+
                             command.Notification = null;
 
                             var reader2 = command.ExecuteReader();

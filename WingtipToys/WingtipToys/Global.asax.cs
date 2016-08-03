@@ -26,10 +26,6 @@ namespace WingtipToys
 
             // Initialize the product database.
             Database.SetInitializer(new ProductDatabaseInitializer());
-            //using (var db = new ProductContext())
-            //{
-
-            //}
 
             // Create the custom role and user.
             RoleActions roleActions = new RoleActions();
@@ -55,11 +51,6 @@ namespace WingtipToys
               "Category/{categoryName}",
               "~/ProductList.aspx"
             );
-            //routes.MapPageRoute(
-            //  "ProductByNameRoute",
-            //  "Product/{productName}",
-            //  "~/ProductDetails.aspx"
-            //);
             routes.MapPageRoute(
             "ProductByIDRoute",
             "Product/{productID}",

@@ -16,48 +16,26 @@ namespace WingtipToys
 
     }
 
-    //public IQueryable<Product> GetProduct(
-    //                    [QueryString("ProductID")] int? productId,
-    //                    [RouteData] string productName)
-    //{
-    //  var _db = new WingtipToys.Models.ProductContext();
-    //  IQueryable<Product> query = _db.Products;
-    //  if (productId.HasValue && productId > 0)
-    //  {
-    //    query = query.Where(p => p.ProductID == productId);
-    //  }
-    //  else if (!String.IsNullOrEmpty(productName))
-    //  {
-    //    query = query.Where(p =>
-    //              String.Compare(p.ProductName, productName) == 0);
-    //  }
-    //  else
-    //  {
-    //    query = null;
-    //  }
-    //  return query;
-    //}
-
-        public IQueryable<Product> GetProduct(
-                    [QueryString("ProductID")] int? productId,
-                    [RouteData] int productID)
+    public IQueryable<Product> GetProduct(
+                [QueryString("ProductID")] int? productId,
+                [RouteData] string productID)
+    {
+        var _db = new WingtipToys.Models.ProductContext();
+        IQueryable<Product> query = _db.Products;
+        if (productId.HasValue && productId > 0)
         {
-            var _db = new WingtipToys.Models.ProductContext();
-            IQueryable<Product> query = _db.Products;
-            if (productId.HasValue && productId > 0)
-            {
-                query = query.Where(p => p.ProductID == productId);
-            }
-            else if (!String.IsNullOrEmpty(productID.ToString()))
-            {
-                query = query.Where(p =>
-                          String.Compare(p.ProductID.ToString(), productID.ToString()) == 0);
-            }
-            else
-            {
-                query = null;
-            }
-            return query;
+            query = query.Where(p => p.ProductID == productId);
         }
+        else if (!String.IsNullOrEmpty(productID))
+        {
+            query = query.Where(p =>
+                        String.Compare(p.ProductID.ToString(), productID) == 0);
+        }
+        else
+        {
+            query = null;
+        }
+        return query;
     }
+  }
 }
