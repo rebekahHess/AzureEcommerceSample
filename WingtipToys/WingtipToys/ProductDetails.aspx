@@ -10,7 +10,7 @@
             <table>
                 <tr>
                     <td>
-                        <img src="/Catalog/Images/<%#:Item.ImagePath %>" style="border:solid; height:300px" alt="<%#:Item.ProductName %>"/>
+                        <img src="<%#:Item.ImagePath %>" style="border:solid; height:300px" alt="<%#:Item.ProductName %>"/>
                     </td>
                     <td>&nbsp;</td>  
                     <td style="vertical-align: top; text-align:left;">
@@ -45,7 +45,7 @@
                             if (data.length > 0) {
                                 var rows = [];
                                 for (var i = 0; i < data.length; i++) {
-                                    rows.push('<td><a href="/Product/' + data[i].ProductName + '"><img src=\'/Catalog/Images/Thumbs/' + data[i].ImageURL +
+                                    rows.push('<td><a href="/Product/' + data[i].ProductName + '"><img src=\'' + data[i].ImageURL +
                                         '\' width="100" height="75" border="1" /></a><br /><a href="/Product/' + data[i].ProductName + '">' + data[i].ProductName +
                                         '</a><br /><span><b>Price: </b>$' + data[i].Price.toFixed(2) + '</span><br /><a href="/AddToCart.aspx?productID=' +
                                         data[i].ProductID + '"><span class="ProductListItem"><b>Add To Cart<b></span></a></td>');

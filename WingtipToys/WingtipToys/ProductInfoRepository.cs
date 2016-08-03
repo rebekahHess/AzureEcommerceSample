@@ -127,7 +127,7 @@ namespace WingtipToys
                     using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RecTest"].ConnectionString))
                     {
 
-                        using (SqlCommand command = new SqlCommand(@"INSERT INTO [dbo].[Purchases] (ProductID, ProductName, ImageURL, Price, CategoryID, Count) VALUES (" + item.Product.ProductID + ", '" + item.Product.ProductName + "', '" + item.Product.ImagePath + "', " + item.Product.UnitPrice + ", " + item.Product.CategoryID + ", 0);", connection))
+                        using (SqlCommand command = new SqlCommand(@"INSERT INTO [dbo].[Purchases] (ProductID, ProductName, ImageURL, Price, CategoryID, Count) VALUES (" + item.Product.ProductID + ", '" + item.Product.ProductName + "', '" + item.Product.ImagePath + "', '" + item.Product.UnitPrice + "', '" + item.Product.CategoryID + "', '0');", connection))
                         {
                             command.Notification = null;
 

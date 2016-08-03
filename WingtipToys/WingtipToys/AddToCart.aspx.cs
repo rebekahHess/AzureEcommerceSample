@@ -19,7 +19,7 @@ namespace WingtipToys
       {
         using (ShoppingCartActions usersShoppingCart = new ShoppingCartActions())
         {
-          usersShoppingCart.AddToCart(Convert.ToInt16(rawId));
+          usersShoppingCart.AddToCart(Convert.ToInt32(rawId));
         }
 
       }
