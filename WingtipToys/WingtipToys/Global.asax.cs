@@ -55,10 +55,15 @@ namespace WingtipToys
               "Category/{categoryName}",
               "~/ProductList.aspx"
             );
+            //routes.MapPageRoute(
+            //  "ProductByNameRoute",
+            //  "Product/{productName}",
+            //  "~/ProductDetails.aspx"
+            //);
             routes.MapPageRoute(
-              "ProductByNameRoute",
-              "Product/{productName}",
-              "~/ProductDetails.aspx"
+            "ProductByIDRoute",
+            "Product/{productID}",
+            "~/ProductDetails.aspx"
             );
 
         }

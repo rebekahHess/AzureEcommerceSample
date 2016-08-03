@@ -29,7 +29,7 @@
                         <table>
                             <tr>
                                 <td>
-                                  <a href="<%#: GetRouteUrl("ProductByNameRoute", new {productName = Item.ProductName}) %>">
+                                  <a href="<%#: GetRouteUrl("ProductByIDRoute", new {productID = Item.ProductID}) %>">
                                     <img src='<%#:Item.ImagePath%>'
                                       width="100" height="75" />
                                   </a>
@@ -37,7 +37,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <a href="<%#: GetRouteUrl("ProductByNameRoute", new {productName = Item.ProductName}) %>">
+                                    <a href="<%#: GetRouteUrl("ProductByIDRoute", new {productID = Item.ProductID}) %>">
                                       <%#:Item.ProductName%>
                                     </a>
                                     <br />
