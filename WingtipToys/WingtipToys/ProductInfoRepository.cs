@@ -35,7 +35,7 @@ namespace WingtipToys
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RecTest"].ConnectionString))
             {
                 connection.Open();
-                using (SqlCommand command = new SqlCommand(@"SELECT TOP 4 * FROM [dbo].[Purchases] ORDER BY [Count] DESC;", connection))
+                using (SqlCommand command = new SqlCommand(@"SELECT TOP 5 * FROM [dbo].[Purchases] ORDER BY [Count] DESC;", connection))
                 {
                     // Make sure the command object does not already have
                     // a notification object associated with it.
@@ -68,7 +68,7 @@ namespace WingtipToys
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RecTest"].ConnectionString))
             {
                 connection.Open();
-                using (SqlCommand command = new SqlCommand(@"SELECT TOP 4 * FROM [dbo].[Purchases] ORDER BY [Count];", connection))
+                using (SqlCommand command = new SqlCommand(@"SELECT TOP 5 * FROM [dbo].[Purchases] ORDER BY [Count];", connection))
                 {
                     // Make sure the command object does not already have
                     // a notification object associated with it.

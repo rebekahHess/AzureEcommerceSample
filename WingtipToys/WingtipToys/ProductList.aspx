@@ -7,7 +7,7 @@
                 <h2><%: Page.Title %></h2>
             </hgroup>
             <asp:ListView ID="productList" runat="server" 
-                DataKeyNames="ProductID" GroupItemCount="4"
+                DataKeyNames="ProductID" GroupItemCount="3"
                 ItemType="WingtipToys.Models.Product" SelectMethod="GetProducts">
                 <EmptyDataTemplate>
                     <table >
@@ -31,7 +31,7 @@
                                 <td>
                                   <a href="<%#: GetRouteUrl("ProductByIDRoute", new {productID = Item.ProductID.ToString()}) %>">
                                     <img src='<%#:Item.ImagePath%>'
-                                      width="100" height="75" />
+                                      width="100" height="100" />
                                   </a>
                                 </td>
                             </tr>
@@ -66,7 +66,7 @@
                                     <table id="groupPlaceholderContainer" runat="server" style="width:100%">
                                         <tr id="groupPlaceholder"></tr>
                                     </table>
-                                    <asp:DataPager ID="DataPager1" runat="server" PagedControlID="productList" PageSize="40">
+                                    <asp:DataPager ID="DataPager1" runat="server" PagedControlID="productList" PageSize="27">
                                         <Fields>
                                             <asp:NextPreviousPagerField ButtonType="Link" ShowFirstPageButton="false" ShowPreviousPageButton="true"
                                                 ShowNextPageButton="false" />
@@ -102,8 +102,8 @@
                     if (data.length > 0) {
                         var rows = [];
                         for (var i = 0; i < data.length; i++) {
-                            rows.push('<td><a href="/Product/' + data[i].ProductID + '"><img src=\'' + data[i].ImageURL +
-                                '\' width="100" height="75" border="1" /></a><br /><a href="/Product/' + data[i].ProductID + '">' + data[i].ProductName +
+                            rows.push('<td width=20%><a href="/Product/' + data[i].ProductID + '"><img src=\'' + data[i].ImageURL +
+                                '\' width="100" height="100" border="1" /></a><br /><a href="/Product/' + data[i].ProductID + '">' + data[i].ProductName +
                                 '</a><br /><span><b>Price: </b>$' + data[i].Price.toFixed(2) + '</span><br /><a href="/AddToCart.aspx?productID=' +
                                 data[i].ProductID + '"><span class="ProductListItem"><b>Add To Cart<b></span></a></td>');
                         }

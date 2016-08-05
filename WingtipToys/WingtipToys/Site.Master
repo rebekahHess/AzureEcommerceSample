@@ -86,7 +86,7 @@
             </a>  
             <br />  
         </div>
-        <div id="CategoryMenu" style="text-align: center">       
+        <div id="CategoryMenu" style="text-align: center">   
             <asp:ListView ID="categoryList"  
                 GroupItemCount="4"
                 ItemType="WingtipToys.Models.Category" 
@@ -117,7 +117,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <table id="groupPlaceholderContainer" runat="server" align="center" style="width:50%">
+                                    <table id="groupPlaceholderContainer" runat="server" align="center" style="width:60%">
                                         <tr id="groupPlaceholder"></tr>
                                     </table>
                                 </td>
