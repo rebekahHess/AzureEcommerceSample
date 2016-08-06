@@ -143,6 +143,39 @@ namespace WingtipToys
             return purchaseData;
         }
 
+        public IEnumerable<ProductInfo> GetCategory(int category)
+        {
+
+            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RecTest"].ConnectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(@"SELECT TOP 5 * FROM [dbo].[Purchases]  WHERE [CategoryID] = " + category + " ORDER BY [Count] DESC;", connection))
+                {
+                    // Make sure the command object does not already have
+                    // a notification object associated with it.
+                    command.Notification = null;
+
+                    if (connection.State == ConnectionState.Closed)
+                        connection.Open();
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        return reader.Cast<IDataRecord>().Select(x => new ProductInfo()
+                        {
+                            ProductID = x.GetInt32(0),
+                            ProductName = x.GetString(1),
+                            ImageURL = x.GetString(2),
+                            Price = x.GetDouble(3),
+                            CategoryID = x.GetInt32(4),
+                            Count = x.GetInt32(5)
+                        }).ToList();
+
+
+                    }
+                }
+            }
+        }
+
         public IEnumerable<String> GetUser()
         {
             List<String> user = new List<String>();

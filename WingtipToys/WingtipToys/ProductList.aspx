@@ -31,7 +31,7 @@
                                 <td>
                                   <a href="<%#: GetRouteUrl("ProductByIDRoute", new {productID = Item.ProductID.ToString()}) %>">
                                     <img src='<%#:Item.ImagePath%>'
-                                      width="100" height="100" />
+                                      width="120" height="120" />
                                   </a>
                                 </td>
                             </tr>
@@ -103,7 +103,7 @@
                         var rows = [];
                         for (var i = 0; i < data.length; i++) {
                             rows.push('<td width=20%><a href="/Product/' + data[i].ProductID + '"><img src=\'' + data[i].ImageURL +
-                                '\' width="100" height="100" border="1" /></a><br /><a href="/Product/' + data[i].ProductID + '">' + data[i].ProductName +
+                                '\' width="120" height="120" border="1" /></a><br /><a href="/Product/' + data[i].ProductID + '">' + data[i].ProductName +
                                 '</a><br /><span><b>Price: </b>$' + data[i].Price.toFixed(2) + '</span><br /><a href="/AddToCart.aspx?productID=' +
                                 data[i].ProductID + '"><span class="ProductListItem"><b>Add To Cart<b></span></a></td>');
                         }

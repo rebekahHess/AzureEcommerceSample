@@ -86,9 +86,9 @@
             </a>  
             <br />  
         </div>
-        <div id="CategoryMenu" style="text-align: center">   
+        <div id="CategoryMenu" style="text-align: center; background-color: #FAFAFA; width:100%">   
             <asp:ListView ID="categoryList"  
-                GroupItemCount="4"
+                GroupItemCount="14"
                 ItemType="WingtipToys.Models.Category" 
                 runat="server"
                 SelectMethod="GetCategories" >
@@ -101,8 +101,8 @@
                     <td runat="server">
                         <table>
                             <tr>
-                                <td>
-                                    <b style="font-size: medium; font-style: normal">
+                                <td style="padding: 10px 10px 10px 10px">
+                                    <b style="font-size: small; font-style: normal">
                                     <a href="<%#: GetRouteUrl("ProductsByCategoryRoute", new {categoryName = Item.CategoryName}) %>">
                                         <%#: Item.CategoryName %>
                                     </a>
@@ -117,7 +117,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <table id="groupPlaceholderContainer" runat="server" align="center" style="width:60%">
+                                    <table id="groupPlaceholderContainer" runat="server" align="center" style="width:90%">
                                         <tr id="groupPlaceholder"></tr>
                                     </table>
                                 </td>
