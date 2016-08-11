@@ -38,7 +38,7 @@
                     $.ajax({
                         url: '/api/Product/5',
                         type: 'GET',
-                        data: { s1: 's' },
+                        data: { product: <%#:Item.ProductID %>, s1: 's' },
                         datatype: 'json',
                         success: function (data) {
                             if (data.length > 0) {

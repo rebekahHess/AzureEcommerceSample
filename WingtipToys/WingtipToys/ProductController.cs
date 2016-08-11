@@ -39,10 +39,10 @@ namespace WingtipToys
         }
 
         [HttpGet]
-        public IEnumerable<ProductInfo> Get(string s1)
+        public IEnumerable<ProductInfo> Get(int product, string s1)
         {
             ProductInfoRepository objRepo = new ProductInfoRepository();
-            return objRepo.GetProducts();
+            return objRepo.GetProducts(product);
         }
 
         // GET api/<controller>/5

@@ -62,16 +62,16 @@ namespace WingtipToys
             }
         }
 
-        public IEnumerable<ProductInfo> GetProducts()
+        public IEnumerable<ProductInfo> GetProducts(int product)
         {
+            List<ProductInfo> recommendations = new List<ProductInfo>();
+            List<int> products = new List<int>();
             // Use for product specific recommendations
-            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RecTest"].ConnectionString))
+            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Recommendations"].ConnectionString))
             {
                 connection.Open();
-                using (SqlCommand command = new SqlCommand(@"SELECT TOP 5 * FROM [dbo].[Purchases] ORDER BY [Count];", connection))
+                using (SqlCommand command = new SqlCommand(@"SELECT [RecOne], [RecTwo], [RecThree] FROM [dbo].[ItemRecommendations] WHERE [ProductId] = " + product + ";", connection))
                 {
-                    // Make sure the command object does not already have
-                    // a notification object associated with it.
                     command.Notification = null;
 
                     if (connection.State == ConnectionState.Closed)
@@ -79,20 +79,46 @@ namespace WingtipToys
 
                     using (var reader = command.ExecuteReader())
                     {
-                        return reader.Cast<IDataRecord>().Select(x => new ProductInfo()
+                        if (reader.Read())
                         {
-                            ProductID = x.GetInt32(0),
-                            ProductName = x.GetString(1),
-                            ImageURL = x.GetString(2),
-                            Price = x.GetDouble(3),
-                            CategoryID = x.GetInt32(4),
-                            Count = x.GetInt32(5)
-                        }).ToList();
-
-
+                            products.Add(reader.GetInt32(0));
+                            products.Add(reader.GetInt32(1));
+                            products.Add(reader.GetInt32(2));
+                        }                        
                     }
                 }
             }
+            foreach(int recommend in products)
+            {
+                using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RecTest"].ConnectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(@"SELECT * FROM [dbo].[Purchases] WHERE [ProductID] = " + recommend + ";", connection))
+                    {
+                        command.Notification = null;
+
+                        if (connection.State == ConnectionState.Closed)
+                            connection.Open();
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                recommendations.Add(new ProductInfo()
+                                {
+                                    ProductID = reader.GetInt32(0),
+                                    ProductName = reader.GetString(1),
+                                    ImageURL = reader.GetString(2),
+                                    Price = reader.GetDouble(3),
+                                    CategoryID = reader.GetInt32(4),
+                                    Count = reader.GetInt32(5)
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            return (IEnumerable<ProductInfo>)recommendations;
         }
 
         public IEnumerable<PurchaseInfo> GetPurchase()

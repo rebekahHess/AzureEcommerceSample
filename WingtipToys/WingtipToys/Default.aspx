@@ -4,12 +4,6 @@
 
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
-    <h1><%: Title %>.</h1>
-    <h2>Wingtip Toys can help you find the perfect gift.</h2>
-    <p class="lead">We're all about transportation toys. You can order 
-            any of our toys today. Each toy listing has detailed 
-            information to help you choose the right toy.</p>
     <hr />
     <div>
         <h3>Top Sellers</h3>
@@ -17,40 +11,40 @@
     <table id="topSellerTable" style="width:100%;"></table>
 
     <hr />
-    <div style="float:left; width: 35%;">    
+    <div style="float:left; width: 37%;">    
         <h3>Recommended for you in Computers</h3>
     </div>
-    <div style="float:right; padding-top:25px; width:65%">
+    <div style="float:right; padding-top:25px; width:63%">
         <a href="/Category/Computers"><b>See more</b></a>
     </div>
     <div style="clear: both;"></div>
     <table id="compTable" style="width:100%;"></table>
 
     <hr />
-    <div style="float:left; width: 43%;">   
+    <div style="float:left; width: 45%;">   
         <h3>Recommended for you in Computer Software</h3>
     </div>
-    <div style="float:right; padding-top:25px; width:57%">
+    <div style="float:right; padding-top:25px; width:55%">
         <a href="/Category/Computer%20Software"><b>See more</b></a>
     </div>
     <div style="clear: both;"></div>
     <table id="softwareTable" style="width:100%;"></table>
 
     <hr />
-    <div style="float:left; width: 36%;">  
+    <div style="float:left; width: 38%;">  
         <h3>Recommended for you in Appliances</h3>
         </div>
-    <div style="float:right; padding-top:25px; width:64%">
+    <div style="float:right; padding-top:25px; width:62%">
         <a href="/Category/Appliances"><b>See more</b></a>
     </div>
     <div style="clear: both;"></div>
     <table id="applianceTable" style="width:100%;"></table>
 
     <hr />
-    <div style="float:left; width: 32%;">  
+    <div style="float:left; width: 34%;">  
         <h3>Recommended for you in Video</h3>
     </div>
-    <div style="float:right; padding-top:25px; width:68%">
+    <div style="float:right; padding-top:25px; width:66%">
         <a href="/Category/Video"><b>See more</b></a>
     </div>
     <div style="clear: both;"></div>
