@@ -70,7 +70,7 @@ namespace WingtipToys
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Recommendations"].ConnectionString))
             {
                 connection.Open();
-                using (SqlCommand command = new SqlCommand(@"SELECT [RecOne], [RecTwo], [RecThree] FROM [dbo].[ItemRecommendations] WHERE [ProductId] = " + product + ";", connection))
+                using (SqlCommand command = new SqlCommand(@"SELECT [RecOne], [RecTwo], [RecThree] FROM [dbo].[ItemRecommendations] WHERE [ProductId] = '" + product + "';", connection))
                 {
                     command.Notification = null;
 
@@ -81,19 +81,19 @@ namespace WingtipToys
                     {
                         if (reader.Read())
                         {
-                            products.Add(reader.GetInt32(0));
-                            products.Add(reader.GetInt32(1));
-                            products.Add(reader.GetInt32(2));
-                        }                        
+                            products.Add(int.Parse(reader.GetString(0)));
+                            products.Add(int.Parse(reader.GetString(1)));
+                            products.Add(int.Parse(reader.GetString(2)));
+                        }
                     }
                 }
             }
             foreach(int recommend in products)
             {
-                using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RecTest"].ConnectionString))
+                using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ProductContext"].ConnectionString))
                 {
                     connection.Open();
-                    using (SqlCommand command = new SqlCommand(@"SELECT * FROM [dbo].[Purchases] WHERE [ProductID] = " + recommend + ";", connection))
+                    using (SqlCommand command = new SqlCommand(@"SELECT * FROM [dbo].[Products] WHERE [ProductID] = '" + recommend + "';", connection))
                     {
                         command.Notification = null;
 
@@ -108,10 +108,10 @@ namespace WingtipToys
                                 {
                                     ProductID = reader.GetInt32(0),
                                     ProductName = reader.GetString(1),
-                                    ImageURL = reader.GetString(2),
-                                    Price = reader.GetDouble(3),
-                                    CategoryID = reader.GetInt32(4),
-                                    Count = reader.GetInt32(5)
+                                    ImageURL = reader.GetString(3),
+                                    Price = reader.GetDouble(4),
+                                    CategoryID = reader.GetInt32(5),
+                                    Count = 0
                                 });
                             }
                         }
