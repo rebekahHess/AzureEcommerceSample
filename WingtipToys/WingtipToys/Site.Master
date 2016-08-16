@@ -82,7 +82,7 @@
         </div>
         <div id="TitleContent" style="text-align: center">
             <a runat="server" href="~/">
-                <asp:Image  ID="Image1" runat="server" ImageUrl="~/Images/newlogo.PNG" BorderStyle="None" />
+                <asp:Image  ID="Image1" runat="server" ImageUrl="~/Images/newlogo2.PNG" BorderStyle="None" />
             </a>  
             <br />  
         </div>
