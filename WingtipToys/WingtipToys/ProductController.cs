@@ -19,8 +19,6 @@ namespace WingtipToys
 {
     public class ProductController : ApiController
     {
-
-
         // GET api/<controller>
         [HttpGet]
         public IEnumerable<ProductInfo> Get()
@@ -38,6 +36,7 @@ namespace WingtipToys
 
         }
 
+        // GET api/<controller>/5
         [HttpGet]
         public IEnumerable<ProductInfo> Get(int product, string s1)
         {

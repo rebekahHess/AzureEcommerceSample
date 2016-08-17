@@ -28,10 +28,10 @@ namespace WingtipToys
         public static ShoppingCartActions userShoppingCart;
         public static List<CartItem> cartItems;
         public static IEnumerable<PurchaseInfo> purchaseData;
-        // Use for home page recommendations
+
+        // Return home page recommendations for top sellers.
         public IEnumerable<ProductInfo> GetHome()
         {
-
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RecTest"].ConnectionString))
             {
                 connection.Open();
@@ -42,7 +42,9 @@ namespace WingtipToys
                     command.Notification = null;
 
                     if (connection.State == ConnectionState.Closed)
+                    {
                         connection.Open();
+                    }
 
                     using (var reader = command.ExecuteReader())
                     {
@@ -62,11 +64,12 @@ namespace WingtipToys
             }
         }
 
+        // Return product page recommendations.
         public IEnumerable<ProductInfo> GetProducts(int product)
         {
             List<ProductInfo> recommendations = new List<ProductInfo>();
             List<int> products = new List<int>();
-            // Use for product specific recommendations
+
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Recommendations"].ConnectionString))
             {
                 connection.Open();
@@ -75,7 +78,9 @@ namespace WingtipToys
                     command.Notification = null;
 
                     if (connection.State == ConnectionState.Closed)
+                    {
                         connection.Open();
+                    }
 
                     using (var reader = command.ExecuteReader())
                     {
@@ -88,6 +93,7 @@ namespace WingtipToys
                     }
                 }
             }
+
             foreach(int recommend in products)
             {
                 using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ProductContext"].ConnectionString))
@@ -118,25 +124,31 @@ namespace WingtipToys
                     }
                 }
             }
+
             return (IEnumerable<ProductInfo>)recommendations;
         }
 
+        // Return cart contents to create purchase events.
         public IEnumerable<PurchaseInfo> GetPurchase()
         {
             Boolean hasRows = false;
+
+            // Add each cart item to database of purchased items if not previously purchased.
+            // Initialze purchase count to 1.
             foreach (CartItem item in cartItems)
             {
                 using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RecTest"].ConnectionString))
                 {
                     connection.Open();
-
-                    // determine if item is not in purchases table
+                    
                     using (SqlCommand command = new SqlCommand(@"SELECT * FROM [dbo].[Purchases] WHERE [ProductID] = '" + item.Product.ProductID + "';", connection))
                     {
                         command.Notification = null;
 
                         if (connection.State == ConnectionState.Closed)
+                        {
                             connection.Open();
+                        }
 
                         var reader = command.ExecuteReader();
                         if (reader.HasRows)
@@ -146,17 +158,19 @@ namespace WingtipToys
 
                     }
                 }
+
                 if (hasRows == false)
                 {
                     using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RecTest"].ConnectionString))
                     {
-
                         using (SqlCommand command = new SqlCommand(@"INSERT INTO [dbo].[Purchases] (ProductID, ProductName, ImageURL, Price, CategoryID, Count) VALUES (" + item.Product.ProductID + ", '" + item.Product.ProductName + "', '" + item.Product.ImagePath + "', '" + item.Product.UnitPrice + "', '" + item.Product.CategoryID + "', '0');", connection))
                         {
                             command.Notification = null;
 
                             if (connection.State == ConnectionState.Closed)
+                            {
                                 connection.Open();
+                            }
 
                             command.Notification = null;
 
@@ -166,23 +180,24 @@ namespace WingtipToys
 
                 }
             }
+
             return purchaseData;
         }
 
+        // Return home page recommendations for a specific category.
         public IEnumerable<ProductInfo> GetCategory(int category)
         {
-
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["RecTest"].ConnectionString))
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(@"SELECT TOP 5 * FROM [dbo].[Purchases]  WHERE [CategoryID] = " + category + " ORDER BY [Count] DESC;", connection))
                 {
-                    // Make sure the command object does not already have
-                    // a notification object associated with it.
                     command.Notification = null;
 
                     if (connection.State == ConnectionState.Closed)
+                    {
                         connection.Open();
+                    }
 
                     using (var reader = command.ExecuteReader())
                     {
@@ -195,13 +210,12 @@ namespace WingtipToys
                             CategoryID = x.GetInt32(4),
                             Count = x.GetInt32(5)
                         }).ToList();
-
-
                     }
                 }
             }
         }
 
+        // Return the email of the current user. If empty, return a random Guid to identify the user.
         public IEnumerable<String> GetUser()
         {
             List<String> user = new List<String>();
@@ -211,17 +225,11 @@ namespace WingtipToys
                 return (IEnumerable<String>)user;
             }
             else
-            {
-                // Generate a new random GUID using System.Guid class.     
-                Guid tempUser = Guid.NewGuid();
+            {    
+                var tempUser = Guid.NewGuid();
                 user.Add(tempUser.ToString());
                 return (IEnumerable<String>)user;
             }
         }
-        private void dependency_OnChange(object sender, SqlNotificationEventArgs e)
-        {
-            SignalrHub.Show();
-        }
-
     }
 }
