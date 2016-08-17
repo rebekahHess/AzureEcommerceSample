@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="EventSimulator.Controls.EventHubControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <StackPanel MaxWidth="450" Margin="10">
+        <!--  Current Status  -->
+        <Grid Margin="5">
+            <TextBlock Text="Current Status: " />
+            <TextBlock Name="TSimulatorStatus" HorizontalAlignment="Right" />
+        </Grid>
+        <!--  Performance of sender  -->
+        <Grid Margin="5">
+            <TextBlock Text="Events Sent: " />
+            <TextBlock Name="TEventsSent" HorizontalAlignment="Right" />
+        </Grid>
+        <Grid Margin="5">
+            <TextBlock Text="Events/s: " />
+            <TextBlock Name="TEventsPerSecond" HorizontalAlignment="Right" />
+        </Grid>
+        <!--  Buttons  -->
+        <UniformGrid Margin="5">
+            <Button Name="StartStopButton"
+                    Margin="0,10,10,10"
+                    Background="Green"
+                    Click="ToggleSimulatorSending">
+                Start
+            </Button>
+            <Button Name="SettingsButton"
+                    Margin="10,10,0,10"
+                    Click="ToggleSettingsFlyout"
+                    Content="Settings" />
+        </UniformGrid>
+    </StackPanel>
+</UserControl>
