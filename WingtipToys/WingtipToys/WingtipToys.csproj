@@ -609,7 +609,6 @@
     <Compile Include="SASServer\SAS.aspx.designer.cs">
       <DependentUpon>SAS.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SignalrHub.cs" />
     <Compile Include="ProductDetails.aspx.cs">
       <DependentUpon>ProductDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

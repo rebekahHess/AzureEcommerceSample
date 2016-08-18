@@ -10,9 +10,6 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Web.Services;
 
-using Microsoft.AspNet.SignalR;
-using Microsoft.AspNet.SignalR.Client;
-
 namespace WingtipToys
 {
   public partial class _Default : Page
