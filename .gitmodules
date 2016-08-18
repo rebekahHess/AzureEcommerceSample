@@ -4,3 +4,6 @@
 [submodule "WingtipToys/EventSimulator"]
 	path = WingtipToys/EventSimulator
 	url = https://github.com/jonmseaman/EventSimulator.git
+[submodule "WingtipToys/RecommendationsScript"]
+	path = WingtipToys/RecommendationsScript
+	url = git@github.com:arjunn11/RecommendationsScript.git
