@@ -50,6 +50,7 @@
     <table id="videoTable" style="width:100%;"></table>
     <!--Script references. -->
     <script type="text/javascript">
+        // Request data on top sellers and append to the Table ID, topSellerTable.
         $(function () {
             $.ajax({
                 url: '/api/Product',
@@ -61,6 +62,7 @@
             });
         })
 
+        // Request data on top sellers in a certain Category, categoryNum, and append to the Table ID, table.
         function displayCategory(categoryNum, table) {
             $.ajax({
                 url: '/api/Product',
@@ -73,6 +75,7 @@
             });
         }
 
+        // Append products from the data input to the Table ID, table.
         function displayData(data, table) {
             if (data.length > 0) {
                 var rows = [];
@@ -86,6 +89,7 @@
             }
         }
 
+        // Display top sellers for Computers, Computer Software, Appliances, and Video.
         displayCategory(6, 'compTable');
         displayCategory(13, 'softwareTable');
         displayCategory(4, 'applianceTable');
