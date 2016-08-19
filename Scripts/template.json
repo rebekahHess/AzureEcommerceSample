@@ -1,0 +1,624 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "accounts_InternRecommendations_name": {
+            "defaultValue": "InternRecommendations",
+            "type": "String"
+        },
+        "servers_internserver2016_name": {
+            "defaultValue": "internserver2016",
+            "type": "String"
+        },
+        "storageAccounts_recommendationscache_name": {
+            "defaultValue": "recommendationscache",
+            "type": "String"
+        },
+        "storageAccounts_sbi2016ehreceiver_name": {
+            "defaultValue": "sbi2016ehreceiver",
+            "type": "String"
+        },
+        "sites_EcommerceSiteWebsocketServer_name": {
+            "defaultValue": "EcommerceSiteWebsocketServer",
+            "type": "String"
+        },
+        "sites_EcommerceSite_name": {
+            "defaultValue": "EcommerceSite",
+            "type": "String"
+        },
+        "databases_ClickDataRaw_name": {
+            "defaultValue": "internserver2016/ClickDataRaw",
+            "type": "String"
+        },
+        "databases_master_name": {
+            "defaultValue": "internserver2016/master",
+            "type": "String"
+        },
+        "databases_Recommendations_name": {
+            "defaultValue": "internserver2016/Recommendations",
+            "type": "String"
+        },
+        "databases_ProductContext_name": {
+            "defaultValue": "internserver2016/ProductContext",
+            "type": "String"
+        },
+        "databases_RecTest_name": {
+            "defaultValue": "internserver2016/RecTest",
+            "type": "String"
+        },
+        "databases_wingtiptoys_name": {
+            "defaultValue": "internserver2016/wingtiptoys",
+            "type": "String"
+        },
+        "firewallRules_AllowAllWindowsAzureIps_name": {
+            "defaultValue": "internserver2016/AllowAllWindowsAzureIps",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.CognitiveServices/accounts/InternRecommendations'.",
+            "type": "Microsoft.CognitiveServices/accounts",
+            "sku": {
+                "name": "F0"
+            },
+            "kind": "Recommendations",
+            "name": "[parameters('accounts_InternRecommendations_name')]",
+            "apiVersion": "2016-02-01-preview",
+            "location": "westus",
+            "properties": {},
+            "resources": [],
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016'.",
+            "type": "Microsoft.Sql/servers",
+            "kind": "v12.0",
+            "name": "[parameters('servers_internserver2016_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "administratorLogin": "interns",
+                "administratorLoginPassword": null,
+                "version": "12.0"
+            },
+            "resources": [],
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/internproject2016/providers/Microsoft.Storage/storageAccounts/recommendationscache'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_RAGRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_recommendationscache_name')]",
+            "apiVersion": "2016-01-01",
+            "location": "westus",
+            "tags": {},
+            "properties": {},
+            "resources": [],
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/internproject2016/providers/Microsoft.Storage/storageAccounts/sbi2016ehreceiver'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_RAGRS",
+                "tier": "Standard"
+            },
+            "kind": "BlobStorage",
+            "name": "[parameters('storageAccounts_sbi2016ehreceiver_name')]",
+            "apiVersion": "2016-01-01",
+            "location": "centralus",
+            "tags": {},
+            "properties": {
+                "accessTier": "Hot"
+            },
+            "resources": [],
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Web/sites/EcommerceSiteWebsocketServer'.",
+            "type": "Microsoft.Web/sites",
+            "kind": "WebApp",
+            "name": "[parameters('sites_EcommerceSiteWebsocketServer_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "West US",
+            "tags": {
+                "hidden-related:/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/serverfarms/Default0": "empty"
+            },
+            "properties": {
+                "name": "[parameters('sites_EcommerceSiteWebsocketServer_name')]",
+                "hostNames": [
+                    "ecommercesitewebsocketserver.azurewebsites.net"
+                ],
+                "enabledHostNames": [
+                    "ecommercesitewebsocketserver.azurewebsites.net",
+                    "ecommercesitewebsocketserver.scm.azurewebsites.net"
+                ],
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_EcommerceSiteWebsocketServer_name'),'ecommercesitewebsocketserver.azurewebsites.net')]",
+                        "sslState": 0,
+                        "thumbprint": null,
+                        "ipBasedSslState": 0
+                    },
+                    {
+                        "name": "[concat(parameters('sites_EcommerceSiteWebsocketServer_name'),'ecommercesitewebsocketserver.scm.azurewebsites.net')]",
+                        "sslState": 0,
+                        "thumbprint": null,
+                        "ipBasedSslState": 0
+                    }
+                ],
+                "serverFarmId": "[parameters('sites_EcommerceSiteWebsocketServer_serverFarmId')]"
+            },
+            "resources": [],
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Web/sites/EcommerceSite'.",
+            "type": "Microsoft.Web/sites",
+            "kind": "api",
+            "name": "[parameters('sites_EcommerceSite_name')]",
+            "apiVersion": "2015-08-01",
+            "location": "West US",
+            "tags": {
+                "hidden-related:/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/Default-Web-WestUS/providers/Microsoft.Web/serverfarms/Default0": "empty"
+            },
+            "properties": {
+                "name": "[parameters('sites_EcommerceSite_name')]",
+                "hostNames": [
+                    "ecommercesite.azurewebsites.net"
+                ],
+                "enabledHostNames": [
+                    "ecommercesite.azurewebsites.net",
+                    "ecommercesite.scm.azurewebsites.net"
+                ],
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_EcommerceSite_name'),'ecommercesite.azurewebsites.net')]",
+                        "sslState": 0,
+                        "thumbprint": null,
+                        "ipBasedSslState": 0
+                    },
+                    {
+                        "name": "[concat(parameters('sites_EcommerceSite_name'),'ecommercesite.scm.azurewebsites.net')]",
+                        "sslState": 0,
+                        "thumbprint": null,
+                        "ipBasedSslState": 0
+                    }
+                ],
+                "serverFarmId": "[parameters('sites_EcommerceSite_serverFarmId')]"
+            },
+            "resources": [],
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/databases/ClickDataRaw'.",
+            "type": "Microsoft.Sql/servers/databases",
+            "kind": "v12.0,user",
+            "name": "[parameters('databases_ClickDataRaw_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "databaseId": "e40063d9-07c7-47ac-975f-a4a5f89e9675",
+                "edition": "Standard",
+                "status": "Online",
+                "serviceLevelObjective": "S0",
+                "collation": "SQL_Latin1_General_CP1_CI_AS",
+                "maxSizeBytes": "268435456000",
+                "creationDate": "2016-06-17T22:57:35.61Z",
+                "currentServiceObjectiveId": "f1173c43-91bd-4aaa-973c-54e79e15235b",
+                "requestedServiceObjectiveId": "f1173c43-91bd-4aaa-973c-54e79e15235b",
+                "requestedServiceObjectiveName": "S0",
+                "defaultSecondaryLocation": "East US",
+                "earliestRestoreDate": "2016-07-14T00:00:00Z",
+                "elasticPoolName": null,
+                "containmentState": 2
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/databases/master'.",
+            "type": "Microsoft.Sql/servers/databases",
+            "kind": "v12.0,system",
+            "name": "[parameters('databases_master_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "databaseId": "d8a3566b-ae1f-490f-8bd5-8aa3f5fe57e7",
+                "edition": "System",
+                "status": "Online",
+                "serviceLevelObjective": "System2",
+                "collation": "SQL_Latin1_General_CP1_CI_AS",
+                "maxSizeBytes": "5368709120",
+                "creationDate": "2016-06-17T22:57:04.427Z",
+                "currentServiceObjectiveId": "620323bf-2879-4807-b30d-c2e6d7b3b3aa",
+                "requestedServiceObjectiveId": "620323bf-2879-4807-b30d-c2e6d7b3b3aa",
+                "requestedServiceObjectiveName": "System2",
+                "defaultSecondaryLocation": "East US",
+                "earliestRestoreDate": null,
+                "elasticPoolName": null,
+                "containmentState": 2
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/databases/Recommendations'.",
+            "type": "Microsoft.Sql/servers/databases",
+            "kind": "v12.0,user",
+            "name": "[parameters('databases_Recommendations_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "databaseId": "77de15e2-f739-4d5a-82b6-604e2833166e",
+                "edition": "Standard",
+                "status": "Online",
+                "serviceLevelObjective": "S2",
+                "collation": "SQL_Latin1_General_CP1_CI_AS",
+                "maxSizeBytes": "268435456000",
+                "creationDate": "2016-07-18T18:39:39.943Z",
+                "currentServiceObjectiveId": "455330e1-00cd-488b-b5fa-177c226f28b7",
+                "requestedServiceObjectiveId": "455330e1-00cd-488b-b5fa-177c226f28b7",
+                "requestedServiceObjectiveName": "S2",
+                "defaultSecondaryLocation": "East US",
+                "earliestRestoreDate": "2016-07-18T18:50:13.453Z",
+                "elasticPoolName": null,
+                "containmentState": 2
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/databases/ProductContext'.",
+            "type": "Microsoft.Sql/servers/databases",
+            "kind": "v12.0,user",
+            "name": "[parameters('databases_ProductContext_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "databaseId": "94deb7bd-7d6c-49d6-8999-915e7e26fce6",
+                "edition": "Standard",
+                "status": "Online",
+                "serviceLevelObjective": "S3",
+                "collation": "SQL_Latin1_General_CP1_CI_AS",
+                "maxSizeBytes": "268435456000",
+                "creationDate": "2016-07-05T21:41:27.973Z",
+                "currentServiceObjectiveId": "789681b8-ca10-4eb0-bdf2-e0b050601b40",
+                "requestedServiceObjectiveId": "789681b8-ca10-4eb0-bdf2-e0b050601b40",
+                "requestedServiceObjectiveName": "S3",
+                "defaultSecondaryLocation": "East US",
+                "earliestRestoreDate": "2016-07-14T00:00:00Z",
+                "elasticPoolName": null,
+                "containmentState": 2
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/databases/RecTest'.",
+            "type": "Microsoft.Sql/servers/databases",
+            "kind": "v12.0,user",
+            "name": "[parameters('databases_RecTest_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "databaseId": "2ac90805-7122-4120-93cb-e52d9c877489",
+                "edition": "Standard",
+                "status": "Online",
+                "serviceLevelObjective": "S0",
+                "collation": "SQL_Latin1_General_CP1_CI_AS",
+                "maxSizeBytes": "268435456000",
+                "creationDate": "2016-07-07T23:15:10.73Z",
+                "currentServiceObjectiveId": "f1173c43-91bd-4aaa-973c-54e79e15235b",
+                "requestedServiceObjectiveId": "f1173c43-91bd-4aaa-973c-54e79e15235b",
+                "requestedServiceObjectiveName": "S0",
+                "defaultSecondaryLocation": "East US",
+                "earliestRestoreDate": "2016-07-14T00:00:00Z",
+                "elasticPoolName": null,
+                "containmentState": 2
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/databases/wingtiptoys'.",
+            "type": "Microsoft.Sql/servers/databases",
+            "kind": "v12.0,user",
+            "name": "[parameters('databases_wingtiptoys_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "databaseId": "730b2abc-1388-4a40-9325-dde8d829a2a3",
+                "edition": "Standard",
+                "status": "Online",
+                "serviceLevelObjective": "S0",
+                "collation": "SQL_Latin1_General_CP1_CI_AS",
+                "maxSizeBytes": "268435456000",
+                "creationDate": "2016-07-05T21:39:26.983Z",
+                "currentServiceObjectiveId": "f1173c43-91bd-4aaa-973c-54e79e15235b",
+                "requestedServiceObjectiveId": "f1173c43-91bd-4aaa-973c-54e79e15235b",
+                "requestedServiceObjectiveName": "S0",
+                "defaultSecondaryLocation": "East US",
+                "earliestRestoreDate": "2016-07-14T00:00:00Z",
+                "elasticPoolName": null,
+                "containmentState": 2
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/firewallRules/AllowAllWindowsAzureIps'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "kind": "v12.0",
+            "name": "[parameters('firewallRules_AllowAllWindowsAzureIps_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "startIpAddress": "0.0.0.0",
+                "endIpAddress": "0.0.0.0"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/firewallRules/ClientIP'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "kind": "v12.0",
+            "name": "[parameters('firewallRules_ClientIP_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "startIpAddress": "131.107.159.206",
+                "endIpAddress": "131.107.159.206"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/firewallRules/ClientIP_6-30-2016'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "kind": "v12.0",
+            "name": "[parameters('firewallRules_ClientIP_6_30_2016_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "startIpAddress": "131.107.147.215",
+                "endIpAddress": "131.107.147.215"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/firewallRules/ClientIP2'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "kind": "v12.0",
+            "name": "[parameters('firewallRules_ClientIP2_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "startIpAddress": "168.62.16.187",
+                "endIpAddress": "168.62.16.187"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/firewallRules/ClientIP3'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "kind": "v12.0",
+            "name": "[parameters('firewallRules_ClientIP3_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "startIpAddress": "168.62.20.56",
+                "endIpAddress": "168.62.20.56"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/firewallRules/ClientIP4'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "kind": "v12.0",
+            "name": "[parameters('firewallRules_ClientIP4_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "startIpAddress": "168.62.20.54",
+                "endIpAddress": "168.62.20.54"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/firewallRules/ClientIP5'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "kind": "v12.0",
+            "name": "[parameters('firewallRules_ClientIP5_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "startIpAddress": "168.62.20.50",
+                "endIpAddress": "168.62.20.50"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/firewallRules/ClientIPAddress_2016-06-30_07:54:41'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "kind": "v12.0",
+            "name": "[parameters('firewallRules_ClientIPAddress_2016_06_30_07:54:41_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "startIpAddress": "131.107.147.206",
+                "endIpAddress": "131.107.147.206"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/firewallRules/ClientIPAddress_2016-07-14_06:29:51'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "kind": "v12.0",
+            "name": "[parameters('firewallRules_ClientIPAddress_2016_07_14_06:29:51_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "startIpAddress": "131.107.147.8",
+                "endIpAddress": "131.107.147.8"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/firewallRules/ClientIPAddress_2016-07-19_06:18:46'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "kind": "v12.0",
+            "name": "[parameters('firewallRules_ClientIPAddress_2016_07_19_06:18:46_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "startIpAddress": "131.107.174.215",
+                "endIpAddress": "131.107.174.215"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/firewallRules/ClientIPAddress_2016-6-5_16-44-16'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "kind": "v12.0",
+            "name": "[parameters('firewallRules_ClientIPAddress_2016_6_5_16_44_16_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "startIpAddress": "167.220.0.185",
+                "endIpAddress": "167.220.0.185"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/firewallRules/computer123'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "kind": "v12.0",
+            "name": "[parameters('firewallRules_computer123_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "startIpAddress": "131.107.160.145",
+                "endIpAddress": "131.107.160.145"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/firewallRules/LocalIP'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "kind": "v12.0",
+            "name": "[parameters('firewallRules_LocalIP_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "startIpAddress": "131.107.160.17",
+                "endIpAddress": "131.107.160.17"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/firewallRules/LocalIP2'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "kind": "v12.0",
+            "name": "[parameters('firewallRules_LocalIP2_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "startIpAddress": "131.107.174.16",
+                "endIpAddress": "131.107.174.16"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/firewallRules/LocalIP3'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "kind": "v12.0",
+            "name": "[parameters('firewallRules_LocalIP3_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "startIpAddress": "131.107.160.87",
+                "endIpAddress": "131.107.160.87"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/854d368f-1828-428f-8f3c-f2affa9b2f7d/resourceGroups/InternProject2016/providers/Microsoft.Sql/servers/internserver2016/firewallRules/LocalIP5'.",
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "kind": "v12.0",
+            "name": "[parameters('firewallRules_LocalIP5_name')]",
+            "apiVersion": "2014-04-01-preview",
+            "location": "West US",
+            "properties": {
+                "startIpAddress": "131.107.174.144",
+                "endIpAddress": "131.107.174.144"
+            },
+            "resources": [],
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('servers_internserver2016_name'))]"
+            ]
+        }
+    ]
+}
