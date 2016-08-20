@@ -1,0 +1,24 @@
+{
+  "Location": "West US",
+  "Properties": {
+    "DataLocale": "en-US",
+    "EventsLateArrivalMaxDelayInSeconds": 5,
+    "EventsOutOfOrderMaxDelayInSeconds": 0,
+    "EventsOutOfOrderPolicy": "Adjust",
+    "Functions": [],
+    "Inputs": [],
+    "Outputs": [],
+    "ProvisioningState": "Succeeded",
+    "Sku": {
+      "Name": "Standard"
+    },
+    "Transformation": {
+      "Name": "Transformation",
+      "Properties": {
+        "Query": "SELECT SessionId, Email as UserId, CurrentUrl as CurrentURL, NextUrl as NextURL, EntryTime, ExitTime\r\nINTO ClickOutput\r\nFROM EventInput\r\nWHERE EventType = 1\r\n\r\nSELECT TransactionNum as OrderId, Email as UserId, ProductId, Price, Quantity, Time\r\nINTO OrdersOutput\r\nFROM EventInput\r\nWHERE EventType = 2\r\n\r\nSELECT TransactionNum as OrderId, Email as UserId, ProductId, Price, Quantity, Time\r\nINTO OrdersOutputCache\r\nFROM EventInput\r\nWHERE EventType = 2\r\n\r\n\r\n\r\n\r\n",
+        "StreamingUnits": 1
+      }
+    }
+  },
+  "Type": "Microsoft.StreamAnalytics/streamingjobs"
+}
