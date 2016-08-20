@@ -1,0 +1,8 @@
+{
+  "Name": "Transformation",
+  "Properties": {
+    "Etag": "8785ed5a-0d66-4a84-a682-0b060ce16d7e",
+    "Query": "SELECT SessionId, Email as UserId, CurrentUrl as CurrentURL, NextUrl as NextURL, EntryTime, ExitTime\r\nINTO ClickOutput\r\nFROM EventInput\r\nWHERE EventType = 1\r\n\r\nSELECT TransactionNum as OrderId, Email as UserId, ProductId, Price, Quantity, Time\r\nINTO OrdersOutput\r\nFROM EventInput\r\nWHERE EventType = 2\r\n\r\nSELECT TransactionNum as OrderId, Email as UserId, ProductId, Price, Quantity, Time\r\nINTO OrdersOutputCache\r\nFROM EventInput\r\nWHERE EventType = 2\r\n\r\n\r\n\r\n\r\n",
+    "StreamingUnits": 1
+  }
+}
