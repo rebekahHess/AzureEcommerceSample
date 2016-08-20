@@ -7,3 +7,6 @@
 [submodule "WingtipToys/RecommendationsScript"]
 	path = WingtipToys/RecommendationsScript
 	url = git@github.com:arjunn11/RecommendationsScript.git
+[submodule "WingtipToys/EcommerceRecommendationsBackend"]
+	path = WingtipToys/EcommerceRecommendationsBackend
+	url = git@github.com:arjunn11/EcommerceRecommendationsBackend.git
