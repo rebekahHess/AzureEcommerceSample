@@ -131,8 +131,8 @@ New-AzureRmStreamAnalyticsOutput -ResourceGroupName $resourceGroupName -JobName 
 # Done with config files, deleting
 Write-Host -ForegroundColor Red "Deleting temporary config files"
 #rm .\ConfigData\StreamAnalyticsInput_EventInput.json
-rm .\ConfigData\StreamAnalyticsOutput_ClickOutput.json
-rm .\ConfigData\StreamAnalyticsOutput_OrdersOutput.json
-rm .\ConfigData\StreamAnalyticsOutput_OrdersOutputCache.json
+Remove-Item .\ConfigData\StreamAnalyticsOutput_ClickOutput.json
+Remove-Item .\ConfigData\StreamAnalyticsOutput_OrdersOutput.json
+Remove-Item .\ConfigData\StreamAnalyticsOutput_OrdersOutputCache.json
 
 # TODO: Deploy the Event Hub
